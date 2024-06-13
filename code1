@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メッセージアプリ</title>
+    <style>
+        /* スタイルの定義 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        main {
+            padding: 20px;
+        }
+        #chat-window {
+            border: 1px solid #ccc;
+            padding: 10px;
+            max-width: 500px;
+            margin: auto;
+            overflow-y: scroll;
+            height: 300px;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .received {
+            background-color: #f2f2f2;
+        }
+        .sent {
+            background-color: #d4eaff;
+            text-align: right;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>メッセージアプリ</h1>
+    </header>
+    <main>
+        <section id="chat-window">
+            <!-- チャットウィンドウ -->
+            <div class="message received">
+                <p>こんにちは！</p>
+            </div>
+            <div class="message sent">
+                <p>こんにちは！</p>
+            </div>
+        </section>
+        <!-- メッセージを送信するフォーム -->
+        <form id="message-form">
+            <input type="text" id="message-input" placeholder="メッセージを入力">
+            <button type="submit">送信</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 メッセージアプリ</p>
+    </footer>
+    <script>
+        // JavaScriptでフォームの送信を処理
+        document.getElementById('message-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // フォームのデフォルトの動作を停止
+            var messageInput = document.getElementById('message-input');
+            var messageText = messageInput.value;
+            if (messageText.trim() !== '') { // メッセージが空でないことを確認
+                var chatWindow = document.getElementById('chat-window');
+                var messageDiv = document.createElement('div');
+                messageDiv.className = 'message sent';
+                messageDiv.innerHTML = '<p>' + messageText + '</p>';
+                chatWindow.appendChild(messageDiv);
+                messageInput.value = ''; // 入力フィールドをクリア
+                chatWindow.scrollTop = chatWindow.scrollHeight; // チャットウィンドウを下までスクロール
+            }
+        });
+    </script>
+</body>
+</html>
